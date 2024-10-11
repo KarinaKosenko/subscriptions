@@ -23,6 +23,8 @@ return new class extends Migration
                 ->comment('FK for payment_periods.id');
             $table->unsignedBigInteger('users_number')
                 ->comment('Number of users included into subscription');
+            $table->unsignedDecimal('price', 10, 2)
+                ->comment('Subscription price');
             $table->dateTime('active_from')
                 ->comment('Datetime when subscription starts');
             $table->dateTime('active_until')

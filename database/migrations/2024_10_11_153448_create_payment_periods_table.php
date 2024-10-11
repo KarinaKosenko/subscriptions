@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('payment_periods', function (Blueprint $table) {
             $table->id();
-            $table->enum('type', ['day', 'week', 'month', 'year'])
-                ->comment('Period type: day, week, month, year');
+            $table->enum('type', ['month', 'year'])
+                ->comment('Period type: month, year');
             $table->unsignedInteger('amount')
                 ->default(1)
                 ->comment('Period amount');

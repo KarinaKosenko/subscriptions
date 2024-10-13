@@ -33,6 +33,7 @@ return new class extends Migration
                 ->default(1)
                 ->comment('Subscription activity status');
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('user_id')
                 ->references('id')

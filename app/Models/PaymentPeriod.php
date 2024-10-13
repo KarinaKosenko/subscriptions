@@ -6,6 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class PaymentPeriod extends Model
 {
+    const MONTH_TYPE = 'month';
+    const YEAR_TYPE = 'year';
+    const TYPES = [
+        self::MONTH_TYPE,
+        self::YEAR_TYPE
+    ];
+
     /**
      * @var string
      */

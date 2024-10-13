@@ -2,11 +2,15 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Subscription extends Model
 {
+    use SoftDeletes;
+
     /**
      * @var string
      */
@@ -48,5 +52,40 @@ class Subscription extends Model
     public function paymentPeriod(): BelongsTo
     {
         return $this->belongsTo(PaymentPeriod::class);
+    }
+
+    /**
+     * @param $query
+     * @return mixed
+     */
+    public function scopeCurrent($query): mixed
+    {
+        $now = Carbon::now()->toDateTimeString();
+
+        return $query
+            ->where('is_active', 1)
+            ->where('active_from', '<=', $now)
+            ->where('active_until', '>', $now);
+    }
+
+    /**
+     * @param $query
+     * @return mixed
+     */
+    public function scopeFuture($query): mixed
+    {
+        $now = Carbon::now()->toDateTimeString();
+
+        return $query->where('active_from', '>', $now);
+    }
+
+    /**
+     * @param $query
+     * @param int $userId
+     * @return mixed
+     */
+    public function scopeByUserId($query, int $userId): mixed
+    {
+        return $query->where('user_id', $userId);
     }
 }

@@ -34,4 +34,13 @@ class PricingPlan extends Model
     {
         return $this->belongsTo(Currency::class);
     }
+
+    /**
+     * @param $query
+     * @return mixed
+     */
+    public function scopeActive($query): mixed
+    {
+        return $query->where('is_active', 1);
+    }
 }

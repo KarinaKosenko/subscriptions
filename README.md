@@ -17,4 +17,5 @@
    `DB_PASSWORD`=
 3. Install dependencies: `composer install`
 4. Create database structure and get a basic data: `php artisan migrate:fresh --seed`
-5. Access Subscription page via url: `APP_URL`/subscriptions/get-user-subscription/1 (where 1 is ID of the test user).
+5. Run Laravel Scheduler on the server (https://laravel.com/docs/9.x/scheduling#running-the-scheduler) or locally (https://laravel.com/docs/9.x/scheduling#running-the-scheduler-locally).
+6. Access Subscription page via url: `APP_URL`/subscriptions/get-user-subscription/1 (where 1 is ID of the test user).
